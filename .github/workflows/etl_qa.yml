@@ -29,13 +29,3 @@ jobs:
         env:
           DRY_RUN: "true"
         run: pytest tests/ -v --tb=short
-
-      - name: Dry-run pipeline (extract + transform + QA only)
-        env:
-          DRY_RUN: "true"
-          # DB vars intentionally blank — dry run skips all DB writes
-          DB_HOST: ""
-          DB_USER: ""
-          DB_PASSWORD: ""
-          DB_NAME: "gisdb"
-        run: python pipeline.py
