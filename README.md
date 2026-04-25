@@ -54,7 +54,8 @@ MASS_TIGER/
 │   └── schema.sql           # PostGIS DDL reference (pipeline auto-creates tables)
 │
 ├── docs/
-│   └── schema.md            # Column reference + example queries
+│   ├── schema.md                # Column reference + example queries
+│   └── METADATA_STANDARDS.md   # FGDC CSDGM-aligned metadata policy
 │
 ├── tests/
 │   └── test_pipeline.py     # Unit tests (no DB required)
@@ -332,6 +333,15 @@ Connect QGIS directly to the PostGIS database:
 2. Create a new connection with your RDS credentials
 3. Connect → expand `mapc` schema → select `zoning_atlas` → Add
 4. Style by `zo_usety` to colour-code residential / commercial / industrial zones
+
+---
+
+## Documentation
+
+| Document | Description |
+|---|---|
+| [docs/schema.md](docs/schema.md) | Full table and column reference, useful queries |
+| [docs/METADATA_STANDARDS.md](docs/METADATA_STANDARDS.md) | FGDC CSDGM-aligned metadata policy — required fields, lineage, QA/QC obligations, update frequency, attribution |
 
 ---
 
