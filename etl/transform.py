@@ -43,7 +43,7 @@ def _repair_geometries(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     Attempt to repair invalid geometries using Shapely's make_valid().
     Logs the count of features that required repair.
     """
-    invalid_mask = ~gdf.geometry.is_valid
+    invalid_mask = gdf.geometry.notna() & ~gdf.geometry.is_valid
     invalid_count = invalid_mask.sum()
 
     if invalid_count > 0:
