@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Effective date:** 2026-04-25  
-**Maintainer:** Ann Shrestha  
+**Maintainer:** Annan Shrestha  
 **Review cycle:** Annually, or upon any major source data revision
 
 ---
@@ -109,7 +109,7 @@ Every pipeline run produces a full lineage record traceable through the `mapc.et
 
 | Field | CSDGM Element | Value |
 |---|---|---|
-| Distributor | `distinfo/distrib` | Ann Shrestha (pipeline maintainer) |
+| Distributor | `distinfo/distrib` | Annan Shrestha (pipeline maintainer) |
 | Distribution format | `distinfo/stdorder/digform` | PostGIS table; GeoJSON via `ST_AsGeoJSON` |
 | Network access | — | AWS RDS endpoint (credentials required) |
 | Fees | `distinfo/distrib/stdorder/fees` | None |
@@ -186,7 +186,7 @@ Consumers performing completeness analysis should use `_eff` (effective value) c
 
 Any product, publication, or analysis using this dataset must include the following credit:
 
-> Zoning data sourced from the MAPC Greater Boston Zoning Atlas, Metropolitan Area Planning Council (mapc.org). Processed and hosted by Ann Shrestha.
+> Zoning data sourced from the MAPC Greater Boston Zoning Atlas, Metropolitan Area Planning Council (mapc.org). Processed and hosted by Annan Shrestha.
 
 For academic or policy publications, the full citation is:
 
@@ -204,4 +204,4 @@ The metadata version history is maintained via git commit history on this file. 
 
 | Version | Date | Author | Changes |
 |---|---|---|---|
-| 1.0 | 2026-04-25 | Ann Shrestha | Initial release |
+| 1.0 | 2026-04-25 | Annan Shrestha | Initial release |
