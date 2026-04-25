@@ -1,0 +1,15 @@
+geopandas>=0.14
+shapely>=2.0
+fiona>=1.9
+pyproj>=3.6
+pandas>=2.0
+requests>=2.31
+sqlalchemy>=2.0
+psycopg2-binary>=2.9
+geoalchemy2>=0.14        # PostGIS geometry type support for SQLAlchemy
+pyarrow>=14.0            # GeoParquet support
+python-dotenv>=1.0       # Load .env file for local development
+pygris>=0.1.6            # TIGER/Line downloads (download_tiger.py)
+
+# Dev / test
+pytest>=7.4

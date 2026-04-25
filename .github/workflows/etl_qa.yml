@@ -1,0 +1,41 @@
+name: ETL QA/QC
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Unit tests + QA/QC checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install GDAL system dependency
+        run: sudo apt-get update && sudo apt-get install -y libgdal-dev
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt pytest
+
+      - name: Run unit tests (no RDS required)
+        env:
+          DRY_RUN: "true"
+        run: pytest tests/ -v --tb=short
+
+      - name: Dry-run pipeline (extract + transform + QA only)
+        env:
+          DRY_RUN: "true"
+          # DB vars intentionally blank — dry run skips all DB writes
+          DB_HOST: ""
+          DB_USER: ""
+          DB_PASSWORD: ""
+          DB_NAME: "gisdb"
+        run: python pipeline.py

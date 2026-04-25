@@ -1,0 +1,26 @@
+# Secrets — never commit
+.env
+
+# Claude Code session files
+.claude/
+
+# Downloaded and processed data (large files)
+data/raw/
+data/processed/
+output/
+
+# Logs
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
