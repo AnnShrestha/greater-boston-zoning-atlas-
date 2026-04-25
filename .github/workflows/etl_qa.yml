@@ -28,4 +28,5 @@ jobs:
       - name: Run unit tests (no RDS required)
         env:
           DRY_RUN: "true"
+          PYTHONPATH: "."
         run: pytest tests/ -v --tb=short
