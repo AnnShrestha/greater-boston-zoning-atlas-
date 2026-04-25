@@ -95,6 +95,17 @@ MASS_TIGER/
  [mapc.qaqc_log]      ← one row per QA/QC check per run
 ```
 
+### Load Strategy: Full Refresh vs. Incremental
+
+This pipeline uses a **full TRUNCATE + reload** on every run. For the Zoning Atlas (1,775 polygons, ~2 min end-to-end), this is the correct choice: the dataset is small, MAPC publishes it as a complete snapshot rather than a changelog, and a full reload guarantees the PostGIS table exactly mirrors the source with no risk of orphaned or stale districts from boundary changes.
+
+For larger datasets where a full reload is impractical — MAPC's Parcel Database (~1.6M parcels statewide) being the obvious example — the pipeline would be modified for incremental updates:
+
+- Add a **surrogate key** (`muni_id + zo_code`) and use `INSERT ... ON CONFLICT DO UPDATE` (upsert) instead of TRUNCATE
+- Track a **`last_modified` watermark** in `etl_runs` and filter the source extract to only changed records
+- Run a **delete pass** after upsert to remove districts that are present in PostGIS but absent from the new source snapshot (soft-deleted or rezoned out)
+- The QA/QC layer would gain a **row-delta check** — flagging any run where net change exceeds a threshold (e.g. ±5%) as a signal of a bad extract rather than genuine rezoning activity
+
 ---
 
 ## Setup
