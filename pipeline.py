@@ -24,7 +24,7 @@ import logging
 import sys
 import uuid
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 import config
 from etl.extract import download_mapc_zoning
@@ -50,7 +50,8 @@ logger = logging.getLogger("pipeline")
 
 def main() -> int:
     run_id = str(uuid.uuid4())
-    started_at = datetime.utcnow().isoformat()
+    started_at = datetime.now(timezone.utc).isoformat()
+
 
     logger.info("═" * 60)
     logger.info("MAPC Zoning Atlas ETL | run_id=%s", run_id)
